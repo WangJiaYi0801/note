@@ -1,5 +1,6 @@
 html
 
+[toc]
 ## 浏览器内核
 webkit(Safari)
 Bink(chrome)
