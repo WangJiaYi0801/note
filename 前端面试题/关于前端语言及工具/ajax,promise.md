@@ -12,7 +12,7 @@ https://www.cnblogs.com/qing-5/p/11368009.html
 <script>
     function ajax(options){
         options = options ||{};  //调用函数时如果options没有指定，就给它赋值{},一个空的Object
-        options.type=(options.type || "GET").toUpperCase();/// 请求格式GET、POST，默认为GET
+        options.type=(options.type || "GET").    ();/// 请求格式GET、POST，默认为GET
         options.dataType=options.dataType || "json";    //响应数据格式，默认json
 
         var params=formatParams(options.data);//options.data请求的数据
