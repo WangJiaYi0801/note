@@ -20,6 +20,14 @@
    1)html
   
    2)css (包含css3)
+   
+   3)canvas
+
+   4)node.js
+
+   5)微信小程序
+   
+   6)Vue(vuex vue-cli 包括webpack的使用配置 等)
   
 ## 待整理更新内容:
 
@@ -37,14 +45,7 @@ h5新加内容
 
 自适应网页,bootstrap等框架的用法
 
-canvas
-
-node.js
-
 es6常用内容(新的语法,promise等)
 
-微信小程序
-
-Vue(vuex vue-cli 包括webpack的使用配置 等)
 
 
