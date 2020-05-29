@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1,
+        #box2,
+        #box3 {
+            width: 200px;
+            height: 100px;
+            margin: 10px;
+        }
+        
+        #box1 {
+            background-color: pink;
+        }
+        
+        #box2 {
+            background-color: hotpink;
+        }
+        
+        #box3 {
+            background-color: deeppink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1">
+        <input type="button" value="点击" id="btn1">
+    </div>
+    <div id="box2">
+        <input type="button" value="点击" id="btn2">
+    </div>
+    <div id="box3">
+        <input type="button" value="点击" id="btn3">
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+        // 动态创建元素
+        // document.write()
+        // element.innerHTML
+        // document.createElement()
+
+        my('btn1').onclick = function() {
+            document.write('Hello <p>World</p>');
+        }
+
+        my('btn2').onclick = function() {
+            my('box2').innerHTML = 'Hello <p>World</p>';
+        }
+
+        my('btn3').onclick = function() {
+            var p = document.createElement('p');
+            p.innerText = 'hello';
+            my('box3').appendChild(p);
+        }
+    </script>
+</body>
+
+</html>

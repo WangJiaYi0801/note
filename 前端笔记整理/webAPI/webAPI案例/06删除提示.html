@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="删除" id="btn">
+    <div id="box">删除成功</div>
+
+    <script>
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+
+        btn.onclick = function() {
+            box.style.display = 'block';
+            setTimeout(fn, 1000);
+
+            function fn() {
+                box.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

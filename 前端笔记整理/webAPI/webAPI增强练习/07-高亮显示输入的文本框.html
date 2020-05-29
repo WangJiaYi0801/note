@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text"><br>
+  <input type="text"><br>
+  <input type="text"><br>
+  <input type="text"><br>
+  <input type="text"><br>
+  <input type="text"><br>
+  <input type="text"><br>
+  <input type="text"><br>
+  <input type="button" value=" 提交 ">
+  <script>
+    var inputs = document.getElementsByTagName('input');
+    for (var i = 0; i < inputs.length; i++) {
+      var input1 = inputs[i];
+      // 判断input是否是文本框
+      if (input1.type !== 'text') {
+        continue;
+      } 
+      // 让当前正在输入的文本框 高亮显示
+      input1.onfocus = function () {
+        // 让所有的文本框去掉高亮的效果
+         for (var i = 0; i < inputs.length; i++) {
+           var input2 = inputs[i];
+           if (input2.type !== 'text') {
+             continue;
+           }
+           // 去除所有文本框高亮显示
+           input2.style.backgroundColor = '';
+         }
+        
+        // 当前文本框高亮显示
+        this.style.backgroundColor = 'lightgray';
+        
+      }
+    }
+  </script>
+</body>
+</html>

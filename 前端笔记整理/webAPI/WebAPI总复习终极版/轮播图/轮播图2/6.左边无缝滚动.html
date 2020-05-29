@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        .box{
+            width: 520px;
+            height: 280px;
+            border:1px solid red;
+            margin:100px auto 0;
+            position: relative;
+        }
+        .box ul {
+            /* width: 2600px; */
+            width: 3150px;
+            /* 为了能让ul能够移动，设置left值，给一个定位 */
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        .box ul li{
+            float: left;
+        }
+        .box ol{
+            /* width: 100px; */
+            /* height: 40px; */
+            /* background-color: red; */
+            position: absolute;
+            left:50%;
+            bottom:10px;
+            margin-left: -75px;
+        }
+        .box ol li{
+            width: 20px;
+            height: 20px;
+            border-radius:50%;
+            background-color:#fff;
+            float: left;
+            margin:5px;
+            cursor: pointer;
+        }
+        .box .current{
+            background-color: orange;
+        }
+        .box span{
+            width: 40px;
+            height: 60px;
+            position: absolute;
+            top:50%;
+            margin-top: -30px;
+            background-color: rgba(255,0,0,0.6);
+            cursor: pointer;
+        }
+        .box .arrow-l{
+            left:0;
+        }
+        .box .arrow-r{
+            right:0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        <ul id="imgBox">
+            <li><img src="images/banner1.jpg" alt=""></li>
+            <li><img src="images/banner2.jpg" alt=""></li>
+            <li><img src="images/banner3.jpg" alt=""></li>
+            <li><img src="images/banner4.jpg" alt=""></li>
+            <li><img src="images/banner5.jpg" alt=""></li>
+        </ul>
+        <ol id="dian">
+            <li class="current"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+        <span class="arrow-l" id="arrowLeft"></span>
+        <span class="arrow-r" id="arrowRight"></span>
+    </div>
+    <script src="animate.js" id="arrowLeft"></script>
+    <script>
+        //找标签
+        var arrowRight = document.getElementById('arrowRight');
+        var arrowLeft = document.getElementById('arrowLeft');
+        //找到ul
+        var imgBox = document.getElementById('imgBox');
+        var box = document.getElementById('box');        
+        var boxWidth = box.clientWidth;
+
+        //找到所有的圆点li
+        var dian = document.getElementById('dian');
+        var dianLi = dian.children;
+        var imgCount =0; //模拟图片索引
+
+        //无缝滚动思路：
+        //1.复制第一张图到最后
+        //2.将ul宽度加长,复制的图能放下
+        //3.imgCount>5,能到第六张图上，
+        //再点击，瞬间移动到第一张图，然后imgCount=1;
+        //在焦点切换函数中判断是最后一张的话，索引为0
+        var firstLi = imgBox.children[0].cloneNode(true);
+        imgBox.appendChild(firstLi);
+
+        //点击右箭头
+        arrowRight.onclick=function(){            
+            imgCount++;
+            if(imgCount>5){
+                imgBox.style.left=0;
+                imgCount=1;
+            }
+            changeImg(imgCount);
+
+            //焦点切换
+            changeDian(imgCount);
+        }
+
+        //当图片索引小于0 ，瞬间移动到最后一张，然后切换到倒数第二张
+        //注意： 设置left值，0可以不加单位，其他数字要加px
+        //点击左边箭头
+        arrowLeft.onclick=function(){
+            imgCount--;
+            if(imgCount<0){
+                imgBox.style.left=-2600+'px';
+                imgCount=4;
+            }
+            changeImg(imgCount);            
+            //焦点切换
+            changeDian(imgCount);
+        }
+
+        //给圆点li添加事件
+        for(var i=0; i<dianLi.length; i++){
+            dianLi[i].setAttribute('index',i);
+            dianLi[i].onclick=dianClick;
+        }
+
+        //点击圆点事件
+        function dianClick(){
+            var index = this.getAttribute('index');
+            imgCount=index;
+            //切换图
+            changeImg(index);
+
+            changeDian(index);
+        }
+
+        //切换图
+        function changeImg(index){
+            var move = - index*boxWidth;
+            animate(imgBox,move);
+        }
+
+        //切换圆点
+        function changeDian(index){
+            if(index==5){
+                index=0;
+            }
+            for(var i =0; i<dianLi.length; i++){
+                dianLi[i].className='';
+            }
+            dianLi[index].className='current';
+        }
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #login {
+            position: absolute;
+            top: 50%;
+            margin-top: -150px;
+            margin-left: -200px;
+            left: 50%;
+            width: 400px;
+            height: 300px;
+            background-color: pink;
+            display: none;
+        }
+        
+        #cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="javascript:void(0);" id="link">点击,显示登录界面</a>
+    </div>
+    <div id="cover"></div>
+    <div id="login">
+        <input type="button" value="关闭" id="btn">
+    </div>
+
+    <script>
+        // 1.点击登录,显示两个盒子
+        var link = document.getElementById('link');
+        var cover = document.getElementById('cover');
+        var login = document.getElementById('login');
+
+        link.onclick = function() {
+            cover.style.display = 'block';
+            login.style.display = 'block';
+        }
+
+        //2.点击按钮,隐藏两个盒子
+        var btn = document.getElementById('btn');
+
+        btn.onclick = function() {
+            cover.style.display = 'none';
+            login.style.display = 'none';
+        }
+
+        //3.拖拽盒子
+
+        //鼠标按下时,求鼠标在盒子中的位置
+        login.onmousedown = function(e) {
+            e = e || window.event;
+            var x = e.pageX - login.offsetLeft;
+            var y = e.pageY - login.offsetTop;
+            console.log(x, y);
+
+            //鼠标移动时,盒子的位置跟随鼠标移动
+            login.onmousemove = function(e) {
+                e = e || window.event;
+                login.style.left = e.pageX - x + 200 + 'px';
+                login.style.top = e.pageY - y + 150 + 'px';
+            }
+        }
+
+        //鼠标松开时,盒子的位置不再变化
+        login.onmouseup = function() {
+            login.onmousemove = null;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" id="all">
+                </th>
+                <th>手机</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody id="tb">
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>手机</td>
+                <td>价格</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>手机</td>
+                <td>价格</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>手机</td>
+                <td>价格</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>手机</td>
+                <td>价格</td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="button" value="反  选" id="btn">
+
+    <script>
+        var myBtn = document.getElementById('btn');
+        var myTb = document.getElementById('tb');
+        var myInputs = myTb.getElementsByTagName('input');
+        var myAll = document.getElementById('all');
+
+        //全选
+        myAll.onclick = function() {
+            for (var i = 0; i < myInputs.length; i++) {
+                myInputs[i].checked = myAll.checked;
+            }
+        }
+
+        //反选
+        myBtn.onclick = function() {
+            for (var i = 0; i < myInputs.length; i++) {
+                myInputs[i].checked = !myInputs[i].checked;
+            }
+            checkAll();
+        }
+
+        //4个都选 全选
+        for (var i = 0; i < myInputs.length; i++) {
+            myInputs[i].onclick = function() {
+                checkAll();
+            }
+        }
+
+        function checkAll() {
+            myAll.checked = true;
+            for (var i = 0; i < myInputs.length; i++) {
+                if (myInputs[i].checked === false) {
+                    myAll.checked = false;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

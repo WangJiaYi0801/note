@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;            
+        }
+        html,body{
+            height: 100%;
+        }
+        body{
+            height: 3000px;
+        }
+        .bg{
+            position: fixed;
+            left:0;
+            top:0;
+            width:100%;
+            height: 100%;
+            background-color:rgba(0,0,0,0.6);
+            display: none;
+        }
+        .login{
+            width: 400px;
+            height: 300px;
+            background-color: #fff;
+            border-radius: 5px;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            margin-top: -150px;
+            margin-left: -200px;
+           
+        }
+        .login span{
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            float:right;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点击按钮</button>
+    <div class="bg" id="bg">
+        <div class="login" id="login">            
+            <span id="close">X</span>
+        </div>
+       
+    </div>
+
+    <script>
+        var myBtn =document.getElementById('btn');
+        var bg = document.getElementById('bg');
+        var closeBtn =document.getElementById('close');
+        var loginBox = document.getElementById('login');
+        myBtn.onclick=function(){
+            bg.style.display='block';
+        }
+        
+        closeBtn.onclick=function(){
+            bg.style.display='none';
+        }
+
+        // 按下login盒子
+        loginBox.onmousedown=function(e){
+            //计算当前鼠标在盒子中的位置
+            var x = e.pageX - loginBox.offsetLeft;
+            var y =e.pageY - loginBox.offsetTop;
+
+            // 鼠标在页面上移动
+            document.onmousemove=function(e){
+                var moveX = e.pageX - x;
+                var moveY = e.pageY - y;
+                //注意会偏移，因为定位居中
+                loginBox.style.left=moveX+200+'px';
+                loginBox.style.top=moveY+150+'px';
+            }
+            document.onmouseup=function(){
+                document.onmousemove=null;
+            }
+        }
+
+        //拓展： 可以做范围判断
+    </script>
+</body>
+</html>

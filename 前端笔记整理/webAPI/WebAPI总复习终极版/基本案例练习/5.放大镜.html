@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+    
+            .box {
+                width: 350px;
+                height: 350px;
+                margin: 100px;
+                border: 1px solid #ccc;
+                position: relative;
+            }
+    
+            .big {
+                width: 400px;
+                height: 400px;
+                position: absolute;
+                top: 0;
+                left: 360px;
+                border: 1px solid #ccc;
+                overflow: hidden;
+                /* display: none; */
+            }
+    
+            .big img {
+                position: absolute;
+            }
+    
+            .mask {
+                width: 175px;
+                height: 175px;
+                background: rgba(255, 255, 0, 0.4);
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                cursor: move;
+                /* display: none; */
+            }
+    
+            .small {
+                position: relative;
+            }
+        </style>
+    </head>
+<body>
+    <div class="box" id="box">
+        <div class="small" id="smallBox">
+            <img src="images/small.jpg" width="350" alt=""/>
+            <div class="mask" id="maskBox"></div>
+        </div>
+        <div class="big" id="bigBox">
+            <img src="images/big.jpg" width="800" alt="" id="bigImg"/>
+        </div>
+    </div>
+
+    <script>
+        //鼠标移入，让黄色盒子跟着移动
+        var box =document.getElementById('box');
+        var maskBox =document.getElementById('maskBox');
+        var smallBox = document.getElementById('smallBox');
+        var bigBox = document.getElementById('bigBox');
+        var bigImg = document.getElementById('bigImg');
+
+        box.onmouseenter=function(e){          
+            //显示
+        }
+
+        box.onmouseleave=function(e){
+           //隐藏
+        }
+        //1.让黄色盒子跟随鼠标移动
+        //2.让黄色盒子不会移动出去
+        //3.移动的过程中，让大图也移动
+        box.onmousemove = function(e){
+            //获取当前鼠标的坐标,计算鼠标在box中的位置
+            var x =e.pageX - box.offsetLeft;
+            var y = e.pageY - box.offsetTop;
+            //向上走一半，上左走一半
+            x = x- maskBox.offsetWidth/2;
+            y = y- maskBox.offsetHeight/2;
+
+            //限制x和y轴不能小于0
+            x = x < 0 ? 0 : x;
+            y = y < 0 ? 0 : y;
+            
+            var maxW = smallBox.offsetWidth - maskBox.offsetWidth;
+            var maxH = smallBox.offsetHeight - maskBox.offsetHeight;
+            x = x >  maxW ? maxW : x;
+            y = y > maxH ? maxH : y;
+
+            //让黄色盒子跟着鼠标
+            maskBox.style.left=x+'px';
+            maskBox.style.top= y+'px';
+
+            //大图移动
+            // 黄色盒子当前距离/黄色最大移动距离 = 大图片当前距离 / 大图片最大的移动距离
+            var bigImgMaxW = bigImg.offsetWidth-bigBox.offsetWidth;
+            var bigImgMaxH = bigImg.offsetHeight- bigBox.offsetHeight;
+            //大盒子的移动位置
+            var bigImgX = x * bigImgMaxW / maxW;
+            var bigImgY = y * bigImgMaxH /maxH;
+            bigImg.style.left= -bigImgX +'px';
+            bigImg.style.top = -bigImgY+'px';
+        }
+
+    </script>
+</body>
+</html>

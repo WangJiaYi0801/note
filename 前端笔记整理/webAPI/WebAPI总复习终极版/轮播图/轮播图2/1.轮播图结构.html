@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        .box{
+            width: 520px;
+            height: 280px;
+            border:1px solid red;
+            margin:100px auto 0;
+            position: relative;
+        }
+        .box ul {
+            width: 2600px;
+            /* 为了能让ul能够移动，设置left值，给一个定位 */
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        .box ul li{
+            float: left;
+        }
+        .box ol{
+            /* width: 100px; */
+            /* height: 40px; */
+            /* background-color: red; */
+            position: absolute;
+            left:50%;
+            bottom:10px;
+            margin-left: -75px;
+        }
+        .box ol li{
+            width: 20px;
+            height: 20px;
+            border-radius:50%;
+            background-color:#fff;
+            float: left;
+            margin:5px;
+            cursor: pointer;
+        }
+        .box .current{
+            background-color: orange;
+        }
+        .box span{
+            width: 40px;
+            height: 60px;
+            position: absolute;
+            top:50%;
+            margin-top: -30px;
+            background-color: rgba(255,0,0,0.6);
+            cursor: pointer;
+        }
+        .box .arrow-l{
+            left:0;
+        }
+        .box .arrow-r{
+            right:0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="images/banner1.jpg" alt=""></li>
+            <li><img src="images/banner2.jpg" alt=""></li>
+            <li><img src="images/banner3.jpg" alt=""></li>
+            <li><img src="images/banner4.jpg" alt=""></li>
+            <li><img src="images/banner5.jpg" alt=""></li>
+        </ul>
+        <ol>
+            <li class="current"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+        <span class="arrow-l"></span>
+        <span class="arrow-r"></span>
+    </div>
+</body>
+</html>

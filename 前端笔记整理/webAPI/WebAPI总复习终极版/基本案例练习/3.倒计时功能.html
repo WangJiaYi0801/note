@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        .box{
+            /* width: 500px; */
+            text-align: center;
+            height: 100px;
+            /* border:1px solid red; */
+            margin:100px auto 0;
+            font-size: 40px;
+            font-family: '微软雅黑';
+           color: red;
+        }
+        .box span{
+            color:#fff;           
+            background-color:orange;
+            border-radius: 5px;            
+            padding:5px 10px;            
+        }
+        .box .tian{
+            background-color: #fff;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span class="tian" id="tian">1天</span>
+        <span class="shi" id="shi">01时</span> :
+        <span class="fen" id="fen">01分</span> :
+        <span class="miao" id="miao">10秒</span>
+    </div>
+    <script>
+        var tianSpan= document.getElementById('tian');
+        var shiSpan = document.getElementById('shi');
+        var fenSpan =document.getElementById('fen');
+        var miaoSpan = document.getElementById('miao');
+                           
+        //先调用一次
+        countDown();
+
+        setInterval(countDown,1000);
+      
+      function countDown(){
+            //获得结束时间
+            var endTime = new Date('2018-11-11 0:0:0');
+        
+            //获得当前时间
+            var nowTime = new Date();
+
+            //计算时间差毫秒                     
+            var count = endTime-nowTime;
+                        
+
+            var tian =Math.floor(count/1000/60/60/24);
+            var shi = Math.floor(count/1000/60/60%24);
+            var fen =Math.floor(count/1000/60%60);
+            var miao = Math.floor(count/1000%60);
+
+            // console.log(tian);
+            shi =  shi<10 ?'0'+shi : shi;
+            fen =  fen<10 ?'0'+fen : fen;
+            miao =  miao<10 ?'0'+miao : miao;
+
+            
+            //设置内容            
+            tianSpan.innerText= tian + '天';
+            shiSpan.innerText=shi+'时';
+            fenSpan.innerText=fen+'分';
+            miaoSpan.innerText=miao+'秒';
+      }
+
+
+
+        
+       
+       
+    </script>
+</body>
+</html>

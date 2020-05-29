@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .header{
+            width:100%;
+            height: 100px;
+            background-color: blue;
+            position: fixed;
+            left:0;
+            top:0;
+            transition: all 0.4s;
+        }       
+        .content{
+            padding-top: 100px;
+            text-align: center;
+        }
+        .toTop{
+            width:100px;
+            height: 100px;
+            background-color:red;
+            position: fixed;
+            right:10px;
+            bottom:50px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header" id="header"></div>
+    <div class="content">
+        <img src="images/content.png" alt="">
+    </div>
+    <div class="toTop" id="toTop"></div>
+    <script>
+        var toTop =document.getElementById('toTop');
+        var header = document.getElementById('header');
+        var num =0;
+        //当页面滚动到某个区域再显示,小于某个区域隐藏
+        window.onscroll=function(){
+            num = document.body.scrollTop || document.documentElement.scrollTop;
+            if(num>100){
+                toTop.style.display='block';
+
+                header.style.height='50px';
+            }else{
+                toTop.style.display='none';
+                header.style.height='100px';
+            }
+        }
+
+        toTop.onclick=function(){
+           var timer = setInterval(function(){
+                num-=10;
+                if(num<0){
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop= 0;
+                    clearInterval(timer)
+                }
+                document.body.scrollTop = num;
+                document.documentElement.scrollTop= num;
+               
+            },5);
+        }
+    </script>
+</body>
+</html>

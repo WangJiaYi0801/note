@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        .box{
+            width: 400px;
+            height: 300px;
+            border:1px solid red;
+            margin:100px auto 0;
+        }
+        .title{
+            position: relative;
+            height: 50px;
+        }
+        .title li{
+            width: 200px;
+            height: 50px;
+            border-bottom: 1px solid blue;
+            border-right: 1px solid blue;
+            box-sizing: border-box;
+            float: left;
+            text-align: center;
+            line-height: 50px;
+            font-size: 30px;
+        }
+        .title .arrow{
+            width: 200px;
+            height: 3px;
+            background-color: darkred;
+            position: absolute;
+            left:0;
+            bottom:0;
+            transition: all 0.4s;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="title">
+            <ul id="ulBox">
+                <li>娱乐</li>
+                <li>体育</li>
+            </ul>
+            <span class="arrow" id="arrowBox"></span>
+        </div>
+    </div>
+    <script>
+        //鼠标移动到li上，让线条移动
+        var ulBox = document.getElementById('ulBox');
+        var arrowBox =document.getElementById('arrowBox');
+        var lis = ulBox.children;
+        for(var i=0; i<lis.length; i++){
+            lis[i].setAttribute('index',i);
+            lis[i].onmouseover=liOver;
+        }
+        
+        function liOver(){
+           var index = this.getAttribute('index');
+            arrowBox.style.left = index * 200 +'px';
+
+        }
+    </script>
+</body>
+</html>

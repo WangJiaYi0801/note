@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #small {
+            width: 300px;
+            height: 200px;
+            margin: 150px;
+            position: relative;
+            background-color: pink;
+        }
+        
+        .smaimg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #big {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 320px;
+            background-color: skyblue;
+            overflow: hidden;
+            display: none;
+        }
+        
+        #bigimg {
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+        
+        #mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70px;
+            height: 70px;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="small">
+        <img src="001.jpeg" alt="" class="smaimg">
+        <div id="mask">
+        </div>
+        <div id="big">
+            <img src="001.jpeg" alt="" id="bigimg">
+        </div>
+    </div>
+
+    <script>
+        var small = document.getElementById('small');
+        var mask = document.getElementById('mask');
+        var big = document.getElementById('big');
+        var bigimg = document.getElementById('bigimg');
+
+        small.onmouseover = function(e) {
+            mask.style.display = 'block';
+            big.style.display = 'block';
+
+            small.onmousemove = function(e) {
+                var x = e.pageX - small.offsetLeft - 35;
+                var y = e.pageY - small.offsetTop - 35;
+
+                x = x < 0 ? 0 : x;
+                y = y < 0 ? 0 : y;
+                x = x > 230 ? 230 : x;
+                y = y > 130 ? 130 : y;
+
+                mask.style.left = x + 'px';
+                mask.style.top = y + 'px';
+
+                //比例: imgy/(bigimg.scrollHeight-big.offsetHeight)=
+                //    x/(small.offsetHeight-mask.offsetHeight)
+
+                var imgx = (bigimg.scrollWidth - big.offsetWidth) * x / (small.offsetWidth - mask.offsetWidth);
+                var imgy = (bigimg.scrollHeight - big.offsetHeight) * y / (small.offsetHeight - mask.offsetHeight);
+
+                imgx = imgx < 0 ? 0 : imgx;
+                imgy = imgy < 0 ? 0 : imgy;
+
+                imgx = imgx > bigimg.scrollWidth - big.offsetWidth ? bigimg.scrollWidth - big.offsetWidth : imgx;
+                imgy = imgy > bigimg.scrollHeight - big.offsetHeight ? bigimg.scrollHeight - big.offsetHeight : imgy;
+
+                bigimg.style.left = -imgx + 'px';
+                bigimg.style.top = -imgy + 'px';
+            }
+        }
+
+        small.onmouseout = function() {
+            mask.style.display = 'none';
+            big.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

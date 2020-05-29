@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <span id="day">00</span>天
+    <span id="hour">00</span>时
+    <span id="minute">00</span>分
+    <span id="second">00</span>秒
+
+    <script>
+        function my(id) {
+            return document.getElementById(id);
+        }
+
+        var spanDay = my('day');
+        var spanHour = my('hour');
+        var spanMinute = my('minute');
+        var spanSecond = my('second');
+
+
+        var endDate = new Date('2018-11-11 00:00:00');
+        var end = endDate.getTime();
+
+        setInterval(fn, 1000);
+        fn();
+
+        function fn() {
+            var nowDate = new Date();
+            var now = nowDate.getTime();
+            times = (end - now) / 1000;
+            var days = Math.round(times / 60 / 60 / 24);
+            var hours = Math.round(times / 60 / 60 % 24);
+            var minutes = Math.round(times / 60 % 60);
+            var seconds = Math.round(times % 60);
+
+            spanDay.innerHTML = days;
+            spanHour.innerHTML = hours;
+            spanMinute.innerHTML = minutes;
+            spanSecond.innerHTML = seconds;
+        }
+    </script>
+</body>
+
+</html>

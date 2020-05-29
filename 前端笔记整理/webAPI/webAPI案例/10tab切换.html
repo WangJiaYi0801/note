@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        div {
+            width: 600px;
+            height: 400px;
+            margin: 100px auto;
+        }
+        
+        #personName {
+            overflow: hidden;
+        }
+        
+        #personName li {
+            float: left;
+            width: 148px;
+            height: 75px;
+            border: 1px solid #fff;
+            line-height: 75px;
+            font-size: 20px;
+            text-align: center;
+            font-weight: 700;
+            border-bottom: 0;
+        }
+        
+        #personName .blue {
+            background-color: skyblue;
+            color: grey;
+        }
+        
+        #personName .grey {
+            background-color: grey;
+            color: skyblue;
+        }
+        
+        #detail li {
+            width: 598px;
+            height: 325px;
+            border: 1px solid #fff;
+            border-top: 0;
+            font-size: 30px;
+            font-family: '楷体';
+            text-align: center;
+            line-height: 325px;
+        }
+        
+        #detail .hide {
+            display: none;
+        }
+        
+        #detail .show {
+            display: block;
+            background-color: grey;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul id="personName">
+            <li class="blue">慈善家</li>
+            <li class="blue">魔术师</li>
+            <li class="blue">空军</li>
+            <li class="blue">医生</li>
+        </ul>
+        <ul id="detail">
+            <li class="hide">克利切</li>
+            <li class="hide">瑟维</li>
+            <li class="hide">塔尔玛</li>
+            <li class="hide">艾米丽</li>
+            <li style="font-size:40px;color:red;">第五人格</li>
+        </ul>
+    </div>
+
+    <script>
+        var myPersonName = document.getElementById('personName');
+        var myLis1 = myPersonName.getElementsByTagName('li');
+        var myDetail = document.getElementById('detail');
+        var myLis2 = myDetail.getElementsByTagName('li');
+
+        for (var i = 0; i < myLis1.length; i++) {
+            myLis1[i].setAttribute('index', i);
+            myLis1[i].onmouseover = function() {
+                for (var i = 0; i < myLis1.length; i++) {
+                    myLis1[i].className = 'blue';
+
+                }
+                this.className = 'grey';
+                for (var i = 0; i < myLis2.length; i++) {
+                    myLis2[i].className = 'hide';
+                }
+                myLis2[this.getAttribute('index')].className = 'show';
+            }
+        }
+    </script>
+</body>
+
+</html>

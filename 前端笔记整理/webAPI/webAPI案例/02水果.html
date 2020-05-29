@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #one,
+        #two {
+            width: 200px;
+            height: 300px;
+            background-color: skyblue;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <select id="one" multiple="multiple">
+        <option>苹果</option>
+        <option>栗子</option>
+        <option>梨</option>
+        <option>水蜜桃</option>
+        <option>榴莲</option>
+        <option>火龙果</option>
+    </select>
+    <input type="button" value=">>" id="btn1">
+    <input type="button" value=">" id="btn2">
+    <input type="button" value="<<" id="btn3">
+    <input type="button" value="<" id="btn4">
+    <select id="two" multiple="multiple"></select>
+
+    <script>
+        function my(id) {
+            return document.getElementById(id);
+        }
+
+        var ops1 = my('one').getElementsByTagName('option');
+        var ops2 = my('two').getElementsByTagName('option');
+
+        my('btn1').onclick = function() {
+            var len = ops1.length;
+            for (var i = 0; i < len; i++) {
+                my('two').appendChild(ops1[0]);
+            }
+        }
+
+        my('btn3').onclick = function() {
+            var len = ops2.length;
+            for (var i = 0; i < len; i++) {
+                my('one').appendChild(ops2[0]);
+            }
+        }
+
+        my('btn2').onclick = function() {
+            var array = [];
+            for (var i = 0; i < ops1.length; i++) {
+                if (ops1[i].selected) {
+                    array.push(ops1[i]);
+                    ops1[i].selected = false;
+                }
+            }
+            for (var i = 0; i < array.length; i++) {
+                my('two').appendChild(array[i]);
+            }
+        }
+
+        my('btn4').onclick = function() {
+            var array = [];
+            for (var i = 0; i < ops2.length; i++) {
+                if (ops2[i].selected) {
+                    array.push(ops2[i]);
+                    ops2[i].selected = false;
+                }
+            }
+            for (var i = 0; i < array.length; i++) {
+                my('one').appendChild(array[i]);
+            }
+        }
+    </script>
+</body>
+
+</html>

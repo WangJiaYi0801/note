@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    .time-item {
+      width: 430px;
+      height: 45px;
+      margin: 0 auto;
+    }
+    
+    .time-item strong {
+        background: orange;
+        color: #fff;
+        line-height: 49px;
+        font-size: 36px;
+        font-family: Arial;
+        padding: 0 10px;
+        margin-right: 10px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .time-item > span {
+        float: left;
+        line-height: 49px;
+        color: orange;
+        font-size: 32px;
+        margin: 0 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .title {
+      width: 260px;
+      height: 50px;
+      margin:200px auto 50px auto;
+    }
+  </style>
+
+</head>
+<body>
+  <h1 class="title">距离光棍节，还有</h1>
+  
+  <div class="time-item">
+    <span><span id="day">00</span>天</span>
+    <strong><span id="hour">00</span>时</strong>
+    <strong><span id="minute">00</span>分</strong>
+    <strong><span id="second">00</span>秒</strong>
+  </div>
+
+  <script src="common.js"></script>
+  <script>
+    // 目标时间
+    var endDate = new Date('2017-11-11 0:0:0');
+
+    // 获取span
+    var spanDay = my$('day');
+    var spanHour = my$('hour');
+    var spanMinute = my$('minute');
+    var spanSecond = my$('second');
+
+    setInterval(countdown, 1000);
+
+    countdown();
+    // 倒计时
+    function countdown() {
+
+      // 计算时间差
+      // 当前时间
+      var startDate = new Date();
+      // 计算两个日期差
+      var interval = getInterval(startDate, endDate);
+
+      setInnerText(spanDay, interval.day);
+      setInnerText(spanHour, interval.hour);
+      setInnerText(spanMinute, interval.minute);
+      setInnerText(spanSecond, interval.second);
+
+    }
+  </script>
+</body>
+</html>

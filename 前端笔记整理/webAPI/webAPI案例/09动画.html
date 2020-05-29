@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #box,
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: relative;
+            top: 0;
+            left: 0;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="动画400" id="btn1">
+    <input type="button" value="动画800" id="btn2">
+    <div id="box"></div>
+    <div id="box1"></div>
+
+    <script>
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        var box = document.getElementById('box');
+        var timeId = null;
+        btn1.onclick = function() {
+            action(box, 400)
+            action(box1, 400)
+        };
+        btn2.onclick = function() {
+            action(box, 800)
+            action(box1, 800)
+        };
+
+        function action(element, target) {
+            var step = 6;
+
+            if (element.timeId) {
+                clearInterval(element.timeId);
+                element.timeId = null;
+            }
+
+            element.timeId = setInterval(function() {
+                var current = element.offsetLeft;
+                if (current > target) {
+                    step = -Math.abs(step);
+                }
+                if (Math.abs(current - target) < Math.abs(step)) {
+                    clearInterval(timeId);
+                    element.style.left = target + 'px';
+                    return;
+                }
+                element.style.left = element.offsetLeft + step + 'px';
+            }, 30);
+
+
+        }
+    </script>
+</body>
+
+</html>
